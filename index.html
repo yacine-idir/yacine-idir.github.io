@@ -1,7 +1,157 @@
-<html>
-<head><title>Dr. Your Name</title></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Official website of Dr. [Your Full Name], Postdoctoral Researcher">
+  <title>Dr. [Your Name]</title>
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --text: #111;
+      --link: #0056b3;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1e1e1e;
+        --text: #eee;
+        --link: #4eaaff;
+      }
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px;
+      line-height: 1.7;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .left {
+      flex: 1 1 60%;
+      max-width: 60%;
+      padding-right: 30px;
+    }
+
+    .right {
+      flex: 1 1 30%;
+      max-width: 30%;
+      text-align: right;
+    }
+
+    .right img {
+      max-width: 180px;
+      border-radius: 8px;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav a {
+      display: inline-block;
+      margin-right: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      color: var(--link);
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      font-size: 24px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        max-width: 100%;
+        padding-right: 0;
+        text-align: left;
+      }
+
+      .right {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
 <body>
-  <h1>Hello, I'm Dr. Your Name</h1>
-  <p>Postdoctoral researcher in [your field].</p>
+
+  <div class="container">
+    <div class="left">
+      <h1>Dr. [Your Full Name]</h1>
+      <p>I am a postdoctoral researcher in [your field], interested in [short description — e.g., "spatial statistics, scalable Bayesian methods, and geostatistical applications"].</p>
+
+      <nav>
+        <a href="https://yourblog.com/vecchia" target="_blank">Vecchia Guide</a>
+        <a href="https://yourblog.com/svc" target="_blank">SVC Guide</a>
+      </nav>
+    </div>
+
+    <div class="right">
+      <img src="your-photo.jpg" alt="Dr. [Your Name]">
+    </div>
+  </div>
+
+  <section>
+    <h2>Research Interests</h2>
+    <p>[Write a paragraph summarizing your research interests and goals.]</p>
+  </section>
+
+  <section>
+    <h2>Publications</h2>
+    <ul>
+      <li>Author1, Author2, <strong>You</strong>. <em>Title of Paper</em>. Journal Name, Year.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Conferences</h2>
+    <ul>
+      <li>Conference Name, Presentation Title, Location, Date.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Teaching</h2>
+    <ul>
+      <li>Course Title, Role (e.g., Lecturer/TA), Institution, Year</li>
+    </ul>
+  </section>
+
 </body>
 </html>
