@@ -1,157 +1,719 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Official website of Dr. [Your Full Name], Postdoctoral Researcher">
-  <title>Dr. [Your Name]</title>
-  <style>
-    :root {
-      --bg: #f7f7f7;
-      --text: #111;
-      --link: #0056b3;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yacine M. Idir | Geostatistician & Spatial Data Scientist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a2e;
+            --paper: #faf9f7;
+            --accent: #2d5a7b;
+            --accent-light: #e8f0f5;
+            --muted: #6b7280;
+            --border: #e5e5e5;
+            --highlight: #f0c040;
+        }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1e1e1e;
-        --text: #eee;
-        --link: #4eaaff;
-      }
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 40px;
-      line-height: 1.7;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 17px;
+        }
 
-    .left {
-      flex: 1 1 60%;
-      max-width: 60%;
-      padding-right: 30px;
-    }
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
 
-    .right {
-      flex: 1 1 30%;
-      max-width: 30%;
-      text-align: right;
-    }
+        /* Header */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 8%;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .right img {
-      max-width: 180px;
-      border-radius: 8px;
-    }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, var(--accent-light) 0%, transparent 70%);
+            opacity: 0.5;
+            z-index: -1;
+        }
 
-    h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
+        .header-content {
+            max-width: 900px;
+        }
 
-    nav {
-      margin: 20px 0;
-    }
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-    nav a {
-      display: inline-block;
-      margin-right: 15px;
-      font-weight: bold;
-      text-decoration: none;
-      color: var(--link);
-    }
+        .eyebrow::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+        h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
 
-    section {
-      margin-top: 40px;
-    }
+        h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
 
-    h2 {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-      font-size: 24px;
-    }
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
 
-    ul {
-      padding-left: 20px;
-    }
+        .header-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
 
-    li {
-      margin-bottom: 8px;
-    }
+        .header-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
 
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
+        .header-links a:hover {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+        }
 
-      .left, .right {
-        max-width: 100%;
-        padding-right: 0;
-        text-align: left;
-      }
+        .header-links a.primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
 
-      .right {
-        margin-top: 20px;
-      }
-    }
-  </style>
+        .header-links a.primary:hover {
+            background: var(--ink);
+            border-color: var(--ink);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Section styling */
+        section {
+            padding: 6rem 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        /* Expertise section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .expertise-card {
+            padding: 2rem;
+            background: white;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.3s ease;
+        }
+
+        .expertise-card:hover::before {
+            height: 100%;
+        }
+
+        .expertise-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.35rem 0.75rem;
+            background: var(--accent-light);
+            color: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--accent) 0%, #1e3a5f 100%);
+            color: white;
+            padding: 3rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .highlight-box h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            opacity: 0.9;
+            max-width: 700px;
+        }
+
+        .highlight-box .package-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-box .package-link:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        /* Publications */
+        .publication-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .publication {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .publication:last-child {
+            border-bottom: none;
+        }
+
+        .publication-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .publication-meta .badge {
+            background: var(--highlight);
+            color: var(--ink);
+            padding: 0.15rem 0.5rem;
+            font-weight: 500;
+        }
+
+        .publication h4 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication .authors {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .publication .venue {
+            font-style: italic;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Experience timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0.5rem;
+            width: 9px;
+            height: 9px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translateX(-4px);
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h4 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-item .organization {
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-item p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* Contact section */
+        .contact-section {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 6rem 8%;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: var(--paper);
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            color: rgba(255,255,255,0.7);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--paper);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.5);
+            padding: 2rem 8%;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 6%;
+            }
+
+            section {
+                padding: 4rem 6%;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="left">
-      <h1>Dr. [Your Full Name]</h1>
-      <p>I am a postdoctoral researcher in [your field], interested in [short description — e.g., "spatial statistics, scalable Bayesian methods, and geostatistical applications"].</p>
+    <header>
+        <div class="header-content">
+            <p class="eyebrow fade-in">Geostatistician & Spatial Data Scientist</p>
+            <h1 class="fade-in delay-1">Yacine M. <em>Idir</em></h1>
+            <p class="tagline fade-in delay-2">
+                Postdoctoral researcher specializing in scalable Bayesian geostatistics, 
+                spatio-temporal modeling, and computational methods for massive environmental datasets.
+            </p>
+            <div class="header-links fade-in delay-3">
+                <a href="#expertise">Expertise</a>
+                <a href="#publications">Publications</a>
+                <a href="https://github.com/yacine-idir/VecchiaCensored-R-Package" target="_blank">GitHub</a>
+                <a href="mailto:mohamed-yacine.idir@minesparis.psl.eu" class="primary">Contact</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg width="16" height="24" viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M8 4v16m0 0l-6-6m6 6l6-6"/>
+            </svg>
+        </div>
+    </header>
 
-      <nav>
-        <a href="https://yourblog.com/vecchia" target="_blank">Vecchia Guide</a>
-        <a href="https://yourblog.com/svc" target="_blank">SVC Guide</a>
-      </nav>
-    </div>
+    <section id="expertise">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2>Areas of Expertise</h2>
+        </div>
 
-    <div class="right">
-      <img src="your-photo.jpg" alt="Dr. [Your Name]">
-    </div>
-  </div>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <h3>Scalable Gaussian Processes</h3>
+                <p>
+                    Development and application of Vecchia approximation methods for 
+                    efficient inference on massive spatio-temporal datasets, enabling 
+                    Bayesian modeling at scales previously computationally intractable.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Vecchia</span>
+                    <span class="tech-tag">GP</span>
+                    <span class="tech-tag">Big Data</span>
+                    <span class="tech-tag">STAN</span>
+                </div>
+            </div>
 
-  <section>
-    <h2>Research Interests</h2>
-    <p>[Write a paragraph summarizing your research interests and goals.]</p>
-  </section>
+            <div class="expertise-card">
+                <h3>Bayesian Spatial Modeling</h3>
+                <p>
+                    Hierarchical Bayesian frameworks for uncertainty quantification, 
+                    including spatially varying coefficient (SVC) models and methods 
+                    for censored/thresholded environmental observations.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Bayesian</span>
+                    <span class="tech-tag">SVC</span>
+                    <span class="tech-tag">Hierarchical</span>
+                    <span class="tech-tag">UQ</span>
+                </div>
+            </div>
 
-  <section>
-    <h2>Publications</h2>
-    <ul>
-      <li>Author1, Author2, <strong>You</strong>. <em>Title of Paper</em>. Journal Name, Year.</li>
-    </ul>
-  </section>
+            <div class="expertise-card">
+                <h3>Environmental Data Science</h3>
+                <p>
+                    Multi-source data fusion combining ground sensors, mobile measurements, 
+                    numerical models, and geophysical data for high-resolution environmental 
+                    mapping and prediction.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Air Quality</span>
+                    <span class="tech-tag">Soil</span>
+                    <span class="tech-tag">Downscaling</span>
+                    <span class="tech-tag">Sensors</span>
+                </div>
+            </div>
 
-  <section>
-    <h2>Conferences</h2>
-    <ul>
-      <li>Conference Name, Presentation Title, Location, Date.</li>
-    </ul>
-  </section>
+            <div class="expertise-card">
+                <h3>Spatio-Temporal Geostatistics</h3>
+                <p>
+                    Variogram modeling, kriging techniques, and covariance function design 
+                    for joint space-time processes. Expertise in handling irregular sampling 
+                    and non-stationary phenomena.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Kriging</span>
+                    <span class="tech-tag">Variogram</span>
+                    <span class="tech-tag">Covariance</span>
+                    <span class="tech-tag">ST</span>
+                </div>
+            </div>
+        </div>
 
-  <section>
-    <h2>Teaching</h2>
-    <ul>
-      <li>Course Title, Role (e.g., Lecturer/TA), Institution, Year</li>
-    </ul>
-  </section>
+        <div class="highlight-box">
+            <h3>VecchiaCensored — R Package</h3>
+            <p>
+                An open-source R package for efficient spatial estimation and prediction with 
+                censored data. Implements both frequentist and Bayesian approaches using the 
+                Vecchia approximation, supporting spatially varying coefficient models and 
+                classical Gaussian processes on large-scale datasets.
+            </p>
+            <a href="https://github.com/yacine-idir/VecchiaCensored-R-Package" target="_blank" class="package-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                View on GitHub
+            </a>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2>Selected Publications</h2>
+        </div>
+
+        <div class="publication-list">
+            <div class="publication">
+                <div class="publication-meta">
+                    <span>2025 · Submitted</span>
+                    <span class="badge">Q1</span>
+                </div>
+                <h4>Efficient Bayesian Spatially Varying Coefficients Modeling for Censored Data Using the Vecchia Approximation</h4>
+                <p class="authors"><strong>Y. Idir</strong>, T. Romary</p>
+                <p class="venue">Spatial Statistics</p>
+            </div>
+
+            <div class="publication">
+                <div class="publication-meta">
+                    <span>2025 · Submitted</span>
+                    <span class="badge">Q1</span>
+                </div>
+                <h4>Improving Spatiotemporal Gaussian Process Modeling with Vecchia's Approximation</h4>
+                <p class="authors"><strong>Y. Idir</strong>, O. Orfila, V. Judalet, B. Sagot, P. Chatellier</p>
+                <p class="venue">Mathematical Geosciences</p>
+            </div>
+
+            <div class="publication">
+                <div class="publication-meta">
+                    <span>2022 · IF: 11.49</span>
+                    <span class="badge">Q1</span>
+                </div>
+                <h4>Is it Really Easy to Detect Sybil Attacks in C-ITS Environments: A Position Paper</h4>
+                <p class="authors">B. Hammi, <strong>Y. Idir</strong>, S. Zeadally, R. Khatoun, J. Nebhen</p>
+                <p class="venue">IEEE Transactions on Intelligent Transportation Systems</p>
+            </div>
+
+            <div class="publication">
+                <div class="publication-meta">
+                    <span>2021 · IF: 3.9</span>
+                    <span class="badge">Q1</span>
+                </div>
+                <h4>Mapping Urban Air Quality from Mobile Sensors Using Spatio-Temporal Geostatistics</h4>
+                <p class="authors"><strong>Y. Idir</strong>, O. Orfila, V. Judalet, B. Sagot, P. Chatellier</p>
+                <p class="venue">Sensors</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2>Experience & Education</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-date">2024 — Present</span>
+                <h4>Postdoctoral Researcher</h4>
+                <p class="organization">Mines Paris — PSL, Fontainebleau</p>
+                <p>Geostatistical modeling of contaminated soils. Development of Bayesian methods with Vecchia approximation for large-scale environmental data. Creation of the VecchiaCensored R package.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-date">2024 — Present</span>
+                <h4>Lecturer</h4>
+                <p class="organization">New York University Paris</p>
+                <p>Teaching "Introduction to Mathematical Modeling" — lectures and tutorials for undergraduate students.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-date">2020 — 2023</span>
+                <h4>PhD in Applied Statistics</h4>
+                <p class="organization">Paris-Saclay University</p>
+                <p>Thesis on spatio-temporal geostatistics for urban air pollution prediction using mobile sensors. Developed hierarchical models and adapted Vecchia approximation for large environmental datasets.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-date">2017 — 2019</span>
+                <h4>Master's in Mathematics</h4>
+                <p class="organization">Paris Descartes University</p>
+                <p>Specialization in Statistics and Data Analysis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>Let's Collaborate</h2>
+        <p>
+            Available for consulting on spatial statistics, environmental data analysis, 
+            and scalable Bayesian modeling projects.
+        </p>
+        <div class="contact-links">
+            <a href="mailto:mohamed-yacine.idir@minesparis.psl.eu">mohamed-yacine.idir@minesparis.psl.eu</a>
+            <a href="https://github.com/yacine-idir/VecchiaCensored-R-Package" target="_blank">GitHub</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Yacine M. Idir · Mines Paris — PSL</p>
+    </footer>
 
 </body>
 </html>
